@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Onde a Tre Ponti, Sanremo</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=Archivo+Narrow:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE everyday: bollettino del mare per chi decide se andare in acqua
+   IDEA la lavagna del surf shop sulla spiaggia: spot, onda, periodo, vento
+   PICTURE il grafico dell'onda ora per ora sui 7 giorni, come un profilo di mare
+   COLOUR blu petrolio #0a4d68 in testa, acqua #15a3b8, arancio segnaletica #ff7a1a come il sito neve
+   TYPE Archivo 800 + Archivo, Archivo Narrow per i numeri
+   LAYOUT testata, scheda riassunto, 7 giorni in colonne, grafico a tutta larghezza; telefono: una colonna */
+:root{color-scheme:light dark;--bg:light-dark(#f2f8fa,#071a24);--card:light-dark(#fff,#0e2a38);--ink:light-dark(#0a2230,#e7f5f9);--mute:light-dark(#4f6a78,#9ab8c4);--line:light-dark(#d3e4ea,#1f4152);--sea:light-dark(#0b8aa0,#5fd0e2);--sea2:light-dark(#bfe9f0,#174f61);--acc:#ff7a1a}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Archivo,system-ui,sans-serif;overflow-x:clip}
+.band{padding-left:max(5vw,16px,env(safe-area-inset-left,0px));padding-right:max(5vw,16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1100px;margin:0 auto}
+header{background:linear-gradient(180deg,#0a4d68,#1592a8);color:#fff;margin-top:calc(-1*env(safe-area-inset-top,0px));padding-top:calc(env(safe-area-inset-top,0px) + 40px);padding-bottom:96px;position:relative;overflow:hidden}
+header .wrap{position:relative;z-index:1}
+.back{display:inline-block;color:#fff;text-decoration:none;background:#ffffff22;border:1px solid #ffffff66;border-radius:8px;padding:4px 12px;font-size:14px;margin-bottom:14px}
+h1{font:800 clamp(34px,5vw,50px)/1.05 Archivo;letter-spacing:-.02em;margin:0 0 8px}
+header p{margin:0;color:#dff3f7;max-width:66ch}
+.sea{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:70px}
+.tag{display:inline-block;background:var(--acc);color:#fff;font:700 13px Archivo;padding:3px 10px;border-radius:6px;margin-bottom:12px}
+.top{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,2fr);gap:16px;margin-top:-64px;position:relative;z-index:2}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 8px 24px #0a223022}
+.now h2{margin:0;font-size:22px}.now .sub{color:var(--mute);font-size:14px}
+.big{font:700 clamp(44px,6vw,60px)/1 'Archivo Narrow',sans-serif;color:var(--sea);margin:14px 0 4px;white-space:nowrap}
+.q{display:inline-block;font:700 13px Archivo;padding:3px 10px;border-radius:6px;color:#fff}
+.q.b{background:#1a9b5a}.q.d{background:#d39a00}.q.p{background:#8a9caa}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+.facts b{display:block;font:700 22px 'Archivo Narrow';white-space:nowrap}.facts span{font-size:13px;color:var(--mute)}
+.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;align-items:end}
+.d{text-align:center;font-size:13px;display:flex;flex-direction:column;align-items:center}
+.d .col{width:100%;height:120px;display:flex;align-items:flex-end;justify-content:center}
+.d .bar{width:72%;border-radius:6px 6px 0 0;background:linear-gradient(180deg,#26b3c9,#0a6d86)}
+.d .ag{font:700 16px Archivo;line-height:1;display:inline;margin:0}.d .ag.b{color:#1a9b5a}.d .ag.d{color:#b98500}.d .ag.p{color:#c0392b}
+.d b{font:700 18px 'Archivo Narrow';display:block;margin-top:4px;white-space:nowrap}
+.d .dn{font-weight:600}.d .mini{color:var(--mute);white-space:nowrap}
+.arr{display:inline-block;transition:none}
+h3{margin:0 0 4px;font-size:18px}.hint{color:var(--mute);font-size:14px;margin:0 0 10px}
+.row2{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1fr);gap:16px;margin-top:16px;align-items:start}
+.camimg{aspect-ratio:16/9;background:linear-gradient(180deg,#7cc6e6,#0a6d86);border-radius:10px;overflow:hidden;display:grid;place-items:center;margin-bottom:8px}
+.camimg img{width:100%;height:100%;object-fit:cover}
+.camimg p{color:#fff;font-size:14px;padding:12px;margin:0;text-align:center}
+.cam a{color:var(--sea);font-size:14px}
+@media(max-width:900px){.row2{grid-template-columns:minmax(0,1fr)}}
+.fig{position:relative;height:290px}
+.hr{display:flex;align-items:center;gap:8px;margin-top:8px}
+.hr input{flex:1;accent-color:var(--acc);min-height:44px}
+.hr button{font:700 20px Archivo,sans-serif;width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}.fig>svg{position:absolute;inset:0;width:100%;height:100%}
+.fig text{font:13px Archivo;fill:var(--mute)}
+.leg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px;font-size:14px;color:var(--mute)}
+.leg b{color:var(--ink)}
+footer{text-align:center;color:var(--mute);font-size:13px;padding:28px 16px calc(28px + env(safe-area-inset-bottom,0px))}
+@media(max-width:600px){.d .q{font-size:0!important;width:12px;height:12px;padding:0!important;border-radius:50%}.d .mini{font-size:12px}}
+@media(max-width:760px){.top{grid-template-columns:minmax(0,1fr)}.leg{grid-template-columns:minmax(0,1fr)}.d .col{height:90px}.d b{font-size:15px}}
+</style>
+</head>
+<body>
+<header class="band">
+  <div class="wrap">
+    <a class="back" href="./">← Torna alla scelta</a>
+    <h1>Onde a Tre Ponti, Sanremo</h1>
+    <p>Altezza delle onde, periodo e direzione per i prossimi 7 giorni. Onde: valore di mezzo tra 4 modelli (Météo-France, ECMWF, DWD, NOAA), da Open-Meteo Marine. Vento e pioggia da ECMWF.</p>
+  </div>
+  <svg class="sea" viewBox="0 0 1200 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30Q100 5 200 30T400 30T600 30T800 30T1000 30T1200 30V70H0Z" fill="#7fd3e0" opacity=".45"/><path d="M0 48Q100 28 200 48T400 48T600 48T800 48T1000 48T1200 48V70H0Z" fill="var(--bg)"/></svg>
+</header>
+<main class="band">
+  <div class="wrap">
+    <div class="top">
+      <section class="card now" id="now"></section>
+      <section class="card"><h3>I prossimi 7 giorni</h3><p class="hint">Onda più alta del giorno, periodo, da dove arriva e probabilità di rovesci (☂, ECMWF) e quanto i 4 modelli sono d'accordo: <b style="color:#1a9b5a">●</b> d'accordo, <b style="color:#b98500">●</b> abbastanza, <b style="color:#c0392b">●</b> incerti.</p><div class="days" id="days"></div></section>
+    </div>
+    <div class="row2"><section class="card chart">
+      <h3 id="ctitle">Onda ora per ora</h3>
+      <p class="hint">7 giorni ora per ora, 3 alla volta: sposta il cursore per andare avanti e indietro. Area azzurra: altezza dell'onda (valore di mezzo tra 4 modelli); fascia chiara: dal modello più basso al più alto, più è stretta più la previsione è sicura. Linea arancio: periodo (sopra 7 secondi le onde sono più ordinate e potenti), mostrato solo quando l'onda supera 0,5 m. In alto: da dove arriva l'onda (N, S, SO...) e la freccia che mostra dove va, ogni 3 ore. Striscia blu sotto il grafico (☂): probabilità di rovesci, più è scura più è probabile.</p>
+      <div class="fig" id="fig"></div>
+      <div class="hr"><button data-dv="-1" aria-label="6 ore prima">‹</button><input type="range" min="0" max="96" step="6" value="0" id="win" aria-label="Sposta i giorni del grafico"><button data-dv="1" aria-label="6 ore dopo">›</button></div>
+      <div class="leg">
+        <div><b>Altezza</b>: quanto è alta l'onda in media (in metri). Sotto 0,5 m a Tre Ponti è quasi piatto.</div>
+        <div><b>Periodo</b>: i secondi tra un'onda e l'altra. Più è lungo, meglio si surfa.</div>
+        <div><b>Vento</b>: da nord (da terra) pulisce le onde; da sud (dal mare) le rovina.</div>
+      </div>
+    </section>
+    <section class="card cam"><h3>Webcam sul mare</h3><p class="hint">Sanremo, Royal Hotel: vista verso sud-est, si aggiorna ogni mezz'ora. <span id="camt"></span></p>
+      <a class="camimg" href="https://royalhotelsanremo.panomax.com/" target="_blank" rel="noopener" title="Apri la webcam dal vivo a 360°"><img id="camimg" alt="Webcam sul mare di Sanremo" src="https://imgproxy.windy.com/_/full/plain/current/1793906882/original.jpg" data-live="https://imgproxy.windy.com/_/full/plain/current/1793906882/original.jpg"></a><p class="hint" style="margin:0">Clicca sulla foto per aprire la webcam dal vivo a 360°.</p></section></div>
+  </div>
+</main>
+<footer>Edit by PROP-ANO</footer>
+<script>
+{
+const LAT=43.808,LON=7.81;
+/* 4 modelli delle onde: si usa il valore di mezzo (mediana), la fascia chiara mostra il minimo e il massimo */
+const MODS=['meteofrance_wave','ecmwf_wam025','dwd_ewam','ncep_gfswave025'];
+const med=a=>{a=a.filter(x=>x!=null).sort((p,q)=>p-q);if(!a.length)return null;const m=a.length>>1;return a.length%2?a[m]:(a[m-1]+a[m])/2};
+let D,H,P,DIRS,RAIN=[],LO=[],HI=[];
+async function load(){
+  const q='latitude='+LAT+'&longitude='+LON+'&timezone=Europe%2FRome&forecast_days=7';
+  const [w,v]=await Promise.all([
+    fetch('https://marine-api.open-meteo.com/v1/marine?'+q+'&hourly=wave_height,wave_period,wave_direction&models='+MODS.join(',')).then(r=>r.json()),
+    fetch('https://api.open-meteo.com/v1/forecast?'+q+'&daily=wind_speed_10m_max,wind_direction_10m_dominant,precipitation_probability_max&hourly=precipitation_probability&models=ecmwf_ifs025').then(r=>r.json())]);
+  const z=a=>(a||[]).map(x=>x??0);
+  const wh=w.hourly,n=wh.time.length,col=k=>MODS.map(m=>wh[k+'_'+m]||[]);
+  const hs=col('wave_height'),ps=col('wave_period'),ds=col('wave_direction');
+  H=[];P=[];DIRS=[];LO=[];HI=[];
+  for(let i=0;i<n;i++){const v=hs.map(a=>a[i]).filter(x=>x!=null);H.push(med(v)??0);LO.push(v.length?Math.min(...v):0);HI.push(v.length?Math.max(...v):0);P.push(med(ps.map(a=>a[i]))??0);DIRS.push(ds.map(a=>a[i]).find(x=>x!=null)??0)}
+  const days=[],hmax=[],per=[],dir=[],agree=[];
+  for(let d=0;d*24<n;d++){const sl=H.slice(d*24,d*24+24),mx=Math.max(...sl),k=d*24+sl.indexOf(mx);days.push(wh.time[d*24].slice(0,10));hmax.push(mx);per.push(Math.max(...P.slice(d*24,d*24+24)));dir.push(DIRS[k]);
+    const mm=hs.map(a=>{const x=a.slice(d*24,d*24+24).filter(y=>y!=null);return x.length?Math.max(...x):null}).filter(x=>x!=null),sp=mm.length>1?Math.max(...mm)-Math.min(...mm):0;
+    agree.push(sp<=Math.max(.2,mx*.2)?['b','d\'accordo']:sp<=Math.max(.4,mx*.4)?['d','abbastanza']:['p','incerti'])}
+  D={time:days,hmax,dir,per,agree,wind:z(v.daily?.wind_speed_10m_max),wdir:z(v.daily?.wind_direction_10m_dominant),rain:z(v.daily?.precipitation_probability_max)};RAIN=z(v.hourly?.precipitation_probability);
+  
+  render();
+}
+const GG=['dom','lun','mar','mer','gio','ven','sab'];
+const nf=(x,d=1)=>x.toFixed(d).replace('.',',');
+const card=d=>['N','NE','E','SE','S','SO','O','NO'][Math.round(d/45)%8];
+const arrow=d=>`<span class="arr" style="transform:rotate(${(d+180)%360}deg)" title="arriva da ${card(d)}">↑</span>`;
+const qual=(h,p)=>h>=0.8&&p>=6.5?['b','Buono']:h>=0.5&&p>=5?['d','Discreto']:['p','Piatto'];
+const day=i=>i===0?'oggi':i===1?'domani':GG[new Date(D.time[i]+'T12:00').getDay()];
+const venti=(d,v)=>(d>=290||d<=70)?`${Math.round(v)} km/h da terra`:(d>=150&&d<=250)?`${Math.round(v)} km/h dal mare`:`${Math.round(v)} km/h laterale`;
+function render(){
+/* scheda riassunto: giorno migliore */
+let best=0;D.hmax.forEach((h,i)=>{if(h*D.per[i]>D.hmax[best]*D.per[best])best=i});
+const bq=qual(D.hmax[best],D.per[best]);
+const bh=H.slice(best*24,best*24+24);const ora=bh.indexOf(Math.max(...bh));
+document.getElementById('now').innerHTML=`<h2>Giorno migliore: ${day(best)}</h2><div class="sub">verso le ${ora}:00, poi l'onda cala</div>
+<div class="big">${nf(D.hmax[best])} m</div><span class="q ${bq[0]}">${bq[1]}</span>
+<div class="facts"><div><b>${nf(D.per[best])} s</b><span>periodo</span></div><div><b>${arrow(D.dir[best])} ${card(D.dir[best])}</b><span>da dove arriva</span></div><div><b>${Math.round(D.wind[best])} km/h</b><span>vento ${card(D.wdir[best])}, ${venti(D.wdir[best],D.wind[best]).replace(/^\d+ km\/h /,'')}</span></div></div>`;
+/* 7 giorni */
+const mx=Math.max(...D.hmax,1);
+document.getElementById('days').innerHTML=D.time.map((t,i)=>{const q=qual(D.hmax[i],D.per[i]);return `<div class="d"><div class="col"><div class="bar" style="height:${Math.max(4,D.hmax[i]/mx*100)}%"></div></div><b>${nf(D.hmax[i])} m</b><span class="dn">${day(i)}</span><span class="mini">${Math.round(D.per[i])} s</span><span class="mini">da ${card(D.dir[i])} ${arrow(D.dir[i])}</span><span class="mini rain" title="Probabilità di rovesci">☂ ${Math.round(D.rain[i])}%</span><span class="mini" title="Modelli: ${D.agree[i][1]}"><b class="ag ${D.agree[i][0]}">●</b></span><span class="q ${q[0]}" style="font-size:11px;padding:1px 4px;margin-top:4px">${q[1]}</span></div>`}).join('');
+/* grafico ora per ora */
+const s=document.getElementById('fig');
+let off=0;const DIRH=DIRS;
+const draw=()=>{const W=s.clientWidth,Hh=s.clientHeight,L=44,R=40,T=50,B=62,w=W-L-R,h=Hh-T-B,n=72,small=W<520;
+const lov=LO.slice(off,off+n),hiv=HI.slice(off,off+n),ymax=Math.max(1.5,Math.ceil(Math.max(...hiv)*2)/2),rv=RAIN.slice(off,off+n),hv=H.slice(off,off+n),pv=P.slice(off,off+n),dv=DIRH.slice(off,off+n);
+const x=i=>L+i/(n-1)*w,y=v=>T+h-v/ymax*h,yp=v=>T+h-v/10*h;
+const area=`M${L} ${T+h}`+hv.map((v,i)=>`L${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join('')+`L${x(n-1)} ${T+h}Z`;
+/* periodo solo quando l'onda è almeno 0,5 m: sotto è quasi piatto e il periodo non conta */
+let per='',pen=false;pv.forEach((v,i)=>{if(hv[i]<0.5){pen=false;return}per+=`${pen?'L':'M'}${x(i).toFixed(1)} ${yp(v).toFixed(1)}`;pen=true});
+let g='';Array.from({length:ymax*2+1},(_,j)=>j/2).forEach(v=>g+=`<line x1="${L}" x2="${L+w}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end">${nf(v)} m</text>`);
+[0,5,10].forEach(v=>g+=`<text x="${L+w+6}" y="${yp(v)+4}" style="fill:#e0680e">${v} s</text>`);
+g+=`<text x="${L-6}" y="${T+h+21}" text-anchor="end">☂</text>`;
+for(let i=0;i<n;i++){const k=off+i,hr=k%24,dd=Math.floor(k/24);
+  if(hr===0&&i>0)g+=`<line x1="${x(i)}" x2="${x(i)}" y1="${T}" y2="${T+h}" stroke="var(--line)" stroke-dasharray="3 4"/>`;
+  const lb=hr===0?(i===0?'0':'24'):(small?hr===12:[6,12,18].includes(hr))?String(hr):null;
+  g+=`<rect x="${(x(i)-w/(n-1)/2).toFixed(1)}" y="${T+h+10}" width="${(w/(n-1)+.5).toFixed(1)}" height="12" fill="#3b6fd6" opacity="${((rv[i]||0)/100*.85).toFixed(2)}"/>`;
+  if(lb!=null)g+=`<text x="${x(i)}" y="${T+h+38}" text-anchor="middle">${lb}</text>`;
+  if(hr===12)g+=`<text x="${x(i)}" y="${Hh-5}" text-anchor="middle" font-weight="700" style="fill:var(--ink)">${day(dd)}</text>`;
+  if(hr%(small?6:3)===0)g+=`<g transform="translate(${x(i)} 12) rotate(${(dv[i]+180)%360})"><path d="M0 -8L5 2H1.5V8H-1.5V2H-5Z" fill="var(--sea)"/></g><text x="${x(i)}" y="36" text-anchor="middle" font-weight="700" style="fill:var(--ink)">${card(dv[i])}</text>`;}
+s.innerHTML=`<svg viewBox="0 0 ${W} ${Hh}"><defs><linearGradient id="gw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#26b3c9"/><stop offset="1" stop-color="#0a6d86" stop-opacity=".35"/></linearGradient></defs>${g}<path d="M${hiv.map((v,i)=>x(i).toFixed(1)+' '+y(v).toFixed(1)).join('L')}L${lov.map((v,i)=>x(i).toFixed(1)+' '+y(v).toFixed(1)).reverse().join('L')}Z" fill="#26b3c9" opacity=".22"/><path d="${area}" fill="url(#gw)"/><path d="${per}" fill="none" stroke="#ff7a1a" stroke-width="2.5"/></svg>`};
+const win=document.getElementById('win');
+const go=v=>{off=Math.max(0,Math.min(96,v));win.value=off;draw()};
+win.addEventListener('input',()=>go(+win.value));
+document.querySelectorAll('.hr button').forEach(b=>b.addEventListener('click',()=>go(off+6*b.dataset.dv)));
+const ro=new ResizeObserver(draw);ro.observe(s);
+}
+load().catch(()=>{document.getElementById('now').innerHTML='<h2>Dati non disponibili</h2><p class="sub">Open-Meteo non risponde in questo momento. Riprova tra qualche minuto.</p>'});
+setInterval(()=>load().catch(()=>{}),3600000);
+/* Webcam: prova la foto dal vivo, ricaricata ogni 30 minuti; se non si carica resta la foto salvata */
+const ci=document.getElementById('camimg'),saved=ci.src;
+const camLoad=()=>{const t=new Image(),k=Math.floor(Date.now()/1800000);t.onload=()=>{ci.src=t.src;document.getElementById('camt').textContent='Foto delle '+new Date().toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'})+'.'};t.src=ci.dataset.live+'?v='+k};
+camLoad();setInterval(camLoad,1800000);
+}
+</script>
+</body>
+</html>

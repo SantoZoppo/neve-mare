@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Neve e onde in Liguria</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=Archivo+Narrow:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE everyday: scelta rapida tra montagna e mare
+   IDEA il cartello al bivio: a sinistra gli impianti, a destra la spiaggia
+   PICTURE due metà di schermo, cresta innevata e mare; al passaggio del mouse nevica o si alza l'onda
+   COLOUR blu ghiaccio #0f2f57 per la montagna, blu petrolio #0a4d68 per il mare, arancio segnaletica #ff7a1a
+   TYPE Archivo 800 + Archivo, Archivo Narrow per i numeri (come il sito neve)
+   LAYOUT laptop: due colonne a tutta altezza; telefono: una sopra l'altra */
+:root{color-scheme:dark;--acc:#ff7a1a}
+*{box-sizing:border-box;min-width:0}
+html,body{height:100%}
+body{margin:0;background:#0b1726;color:#fff;font:16px/1.5 Archivo,system-ui,sans-serif;overflow-x:clip}
+.tag{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:max(10px,env(safe-area-inset-left,0px));background:var(--acc);color:#fff;font:700 13px Archivo;padding:4px 10px;border-radius:6px;z-index:9}
+.title{position:absolute;top:calc(26px + env(safe-area-inset-top,0px));left:0;right:0;text-align:center;font:800 clamp(22px,3vw,32px)/1.1 Archivo;letter-spacing:-.02em;z-index:5;pointer-events:none;padding:0 16px}
+.split{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:100%}
+.side{position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:120px max(5vw,20px) 56px;overflow:hidden;color:#fff;text-decoration:none;min-height:560px;transition:flex .4s}
+.m{background:linear-gradient(180deg,#0f2f57,#2a5f96)}
+.s{background:linear-gradient(180deg,#0a4d68,#1592a8)}
+.scene{position:absolute;left:0;right:0;top:10%;height:40%;width:100%}
+.side>*:not(.scene):not(.fx){position:relative;z-index:2}
+.side h2{font:800 clamp(48px,6vw,72px)/1 Archivo;letter-spacing:-.02em;margin:0 0 10px}
+.side p{margin:0 0 20px;max-width:36ch;color:#e3f0fb}
+.pill{align-self:flex-start;background:#ffffff22;border:1px solid #ffffff55;border-radius:10px;padding:8px 14px;margin-bottom:18px;font:600 15px Archivo}
+.btn{align-self:flex-start;background:var(--acc);color:#fff;font:700 18px Archivo;padding:12px 22px;border-radius:10px;transition:transform .2s}
+.side:hover .btn,.side:focus-visible .btn{transform:translateX(6px)}
+.side:focus-visible{outline:4px solid var(--acc);outline-offset:-4px}
+.sig{position:absolute;bottom:calc(10px + env(safe-area-inset-bottom,0px));left:0;right:0;text-align:center;color:#ffffffaa;font:13px Archivo;z-index:5;pointer-events:none}
+/* neve */
+.fx{position:absolute;inset:0;pointer-events:none;z-index:1;opacity:0;transition:opacity .6s}
+.fl{position:absolute;top:-12px;border-radius:50%;background:#fff;animation:fall linear infinite;animation-play-state:paused}
+@keyframes fall{to{transform:translate3d(var(--dx),110vh,0)}}
+.m:hover .fx,.m:focus-visible .fx,.m.on .fx{opacity:1}
+.m:hover .fl,.m:focus-visible .fl,.m.on .fl{animation-play-state:running}
+/* onde */
+.w1,.w2{animation:slide 7s linear infinite;animation-play-state:paused}
+.w2{animation-duration:4.5s}
+@keyframes slide{to{transform:translateX(-300px)}}
+.curl{transform-origin:50% 100%;transform:translateY(60px) scaleY(.2);transition:transform 1s cubic-bezier(.3,1.4,.5,1)}
+.foam circle{opacity:0;transition:opacity .8s .5s}
+.s:hover .w1,.s:hover .w2,.s:focus-visible .w1,.s:focus-visible .w2,.s.on .w1,.s.on .w2{animation-play-state:running}
+.s:hover .curl,.s:focus-visible .curl,.s.on .curl{transform:none}
+.s:hover .foam circle,.s:focus-visible .foam circle,.s.on .foam circle{opacity:1}
+@media(max-width:700px){.split{grid-template-columns:minmax(0,1fr)}.side{min-height:50svh;padding-top:90px;padding-bottom:40px}.s{padding-bottom:56px}.scene{top:14%;height:40%}.title{position:absolute}}
+@media(prefers-reduced-motion:reduce){.fl,.w1,.w2{animation:none}.curl{transition:none}}
+</style>
+</head>
+<body>
+<div class="title">Alpi Liguri: neve e onde</div>
+<div class="split">
+  <a class="side m" href="https://santozoppo.github.io/neve-alpi-liguri/" aria-label="Vai alla neve">
+    <div class="fx" id="snow"></div>
+    <svg class="scene" viewBox="0 0 600 260" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <path d="M0 260V150L90 110 170 150 260 60 330 120 420 40 500 110 600 80V260Z" fill="#5f8fbf" opacity=".6"/>
+      <path d="M260 60 285 85 300 78 330 120 255 100ZM420 40 445 70 462 62 500 110 415 85Z" fill="#fff" opacity=".85"/>
+      <path d="M0 260V190L110 150 200 175 300 120 380 165 480 110 600 150V260Z" fill="#dbe9f6"/>
+    </svg>
+    <span class="pill">Garessio 2000 · Monesi · Colle d'Oggia · Turini</span>
+    <h2>Montagna</h2>
+    <p>Neve prevista nei prossimi 7 giorni su Garessio 2000, Monesi, Colle d'Oggia e Colle del Turini.</p>
+    <span class="btn">Vai alla neve →</span>
+  </a>
+  <a class="side s" href="mare.html" aria-label="Vai alle onde">
+    <svg class="scene" viewBox="0 0 600 260" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <g class="curl">
+        <path d="M150 260C170 180 240 90 340 80C410 74 455 110 450 150C446 182 415 190 400 170C390 155 405 140 420 150C420 120 390 105 355 110C280 122 250 200 260 260Z" fill="#2fb2c6"/>
+        <path d="M340 80C410 74 455 110 450 150C446 182 415 190 400 170" fill="none" stroke="#e9fbfd" stroke-width="8" stroke-linecap="round"/>
+        <g class="foam" fill="#fff"><circle cx="452" cy="140" r="6"/><circle cx="440" cy="118" r="5"/><circle cx="462" cy="160" r="4"/><circle cx="420" cy="96" r="4"/></g>
+      </g>
+      <g class="w1"><path d="M0 190Q75 160 150 190T300 190T450 190T600 190T750 190T900 190V260H0Z" fill="#7fd3e0" opacity=".55"/></g>
+      <g class="w2"><path d="M0 215Q75 190 150 215T300 215T450 215T600 215T750 215T900 215V260H0Z" fill="#d9f3f7"/></g>
+    </svg>
+    <span class="pill" id="seapill">Tre Ponti, Sanremo</span>
+    <h2>Mare</h2>
+    <p>Altezza, periodo e direzione delle onde a Tre Ponti, Sanremo, per chi fa surf.</p>
+    <span class="btn">Vai alle onde →</span>
+  </a>
+  <div class="sig">Edit by PROP-ANO</div>
+</div>
+<script>
+{
+  const box=document.getElementById('snow');let s=7;const r=()=>(s=s*16807%2147483647)/2147483647;
+  box.innerHTML=Array.from({length:90},()=>{const z=2+r()*5;return `<i class="fl" style="left:${(r()*100).toFixed(1)}%;width:${z.toFixed(1)}px;height:${z.toFixed(1)}px;opacity:${(.5+r()*.5).toFixed(2)};--dx:${((r()-.5)*80).toFixed(0)}px;animation-duration:${(4+r()*6).toFixed(1)}s;animation-delay:-${(r()*10).toFixed(1)}s"></i>`}).join('');
+  /* sul telefono non c'è il mouse: l'effetto parte quando la metà è visibile */
+  if(matchMedia('(hover:none)').matches){
+    const io=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('on',e.intersectionRatio>.5)),{threshold:[0,.5,1]});
+    document.querySelectorAll('.side').forEach(el=>io.observe(el));
+  }
+  /* Anteprima del mare: onda più alta di oggi e domani a Tre Ponti, presa dal vivo da Open-Meteo */
+  fetch('https://marine-api.open-meteo.com/v1/marine?latitude=43.808&longitude=7.81&daily=wave_height_max&timezone=Europe%2FRome&forecast_days=2')
+    .then(r=>r.json()).then(o=>{const h=o.daily.wave_height_max,i=h[1]>h[0]?1:0;
+      document.getElementById('seapill').textContent=`Tre Ponti: onde fino a ${h[i].toFixed(1).replace('.',',')} m ${i?'domani':'oggi'}`}).catch(()=>{});
+}
+</script>
+</body>
+</html>
