@@ -42,6 +42,15 @@ header p{margin:0;color:#dff3f7;max-width:66ch}
 .d .dn{font-weight:600}.d .mini{color:var(--mute);white-space:nowrap}
 .arr{display:inline-block;transition:none}
 h3{margin:0 0 4px;font-size:18px}.hint{color:var(--mute);font-size:14px;margin:0 0 10px}
+.wv{margin-top:16px}
+.wvscene{position:relative;height:clamp(260px,36vw,400px);border-radius:12px;overflow:hidden}
+.wvscene svg{position:absolute;inset:0;width:100%;height:100%}
+.wvinfo{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;padding:14px 0 4px}
+.wvinfo b{display:block;font:700 24px 'Archivo Narrow';white-space:nowrap}.wvinfo span{font-size:13px;color:var(--mute)}
+.wvdays{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.wvdays button{font:600 15px Archivo;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:8px 14px;min-height:44px;cursor:pointer}
+.wvdays button[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+@media(max-width:600px){.wvinfo{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .row2{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1fr);gap:16px;margin-top:16px;align-items:start}
 .camimg{aspect-ratio:16/9;background:linear-gradient(180deg,#7cc6e6,#0a6d86);border-radius:10px;overflow:hidden;display:grid;place-items:center;margin-bottom:8px}
 .camimg img{width:100%;height:100%;object-fit:cover}
@@ -75,6 +84,8 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:28px 16px calc
       <section class="card now" id="now"></section>
       <section class="card"><h3>I prossimi 7 giorni</h3><p class="hint">Onda più alta del giorno, periodo, da dove arriva e probabilità di rovesci (☂, ECMWF) e quanto i 4 modelli sono d'accordo: <b style="color:#1a9b5a">●</b> d'accordo, <b style="color:#b98500">●</b> abbastanza, <b style="color:#c0392b">●</b> incerti.</p><div class="days" id="days"></div></section>
     </div>
+    <section class="card wv"><h3>Come sarà l'onda</h3><p class="hint">Disegnata in scala accanto a un surfista alto 1,75 m. La distanza tra le onde cresce col periodo (1,56 × periodo², al largo; il disegno non è in scala in larghezza). Vicino a riva, dove frange, la parete può sembrare un po' più alta.</p>
+      <div class="wvscene" id="wvscene"></div><div class="wvinfo" id="wvinfo"></div><div class="wvdays" id="wvdays"></div></section>
     <div class="row2"><section class="card chart">
       <h3 id="ctitle">Onda ora per ora</h3>
       <p class="hint">7 giorni ora per ora, 3 alla volta: sposta il cursore per andare avanti e indietro. Area azzurra: altezza dell'onda (valore di mezzo tra 4 modelli); fascia chiara: dal modello più basso al più alto, più è stretta più la previsione è sicura. Linea arancio: periodo (sopra 7 secondi le onde sono più ordinate e potenti), mostrato solo quando l'onda supera 0,5 m. In alto: da dove arriva l'onda (N, S, SO...) e la freccia che mostra dove va, ogni 3 ore. Striscia blu sotto il grafico (☂): probabilità di rovesci, più è scura più è probabile.</p>
@@ -123,6 +134,46 @@ const arrow=d=>`<span class="arr" style="transform:rotate(${(d+180)%360}deg)" ti
 const qual=(h,p)=>h>=0.8&&p>=6.5?['b','Buono']:h>=0.5&&p>=5?['d','Discreto']:['p','Piatto'];
 const day=i=>i===0?'oggi':i===1?'domani':GG[new Date(D.time[i]+'T12:00').getDay()];
 const venti=(d,v)=>(d>=290||d<=70)?`${Math.round(v)} km/h da terra`:(d>=150&&d<=250)?`${Math.round(v)} km/h dal mare`:`${Math.round(v)} km/h laterale`;
+/* Disegno dell'onda in scala con un surfista di 1,75 m (giorno scelto con i pulsanti) */
+let WSEL=0;
+function drawWave(){if(!D)return;
+
+  const box=document.getElementById('wvscene'),W=box.clientWidth,H=box.clientHeight,hgt=D.hmax[WSEL],per=D.per[WSEL],dir=card(D.dir[WSEL]);
+  const sea=H*0.62;                     /* livello medio del mare */
+  const px=(H*0.42)/2.6;                /* pixel per metro: 2,6 m riempiono la scena */
+  const amp=hgt*px/2;
+  const L=W*Math.min(.8,Math.max(.28,per/10)); /* distanza tra le creste: cresce col periodo (non in scala) */
+  const steep=Math.min(.9,hgt/1.2);      /* più è alta più la cresta è appuntita */
+  let d=`M0 ${H}`;
+  for(let x=0;x<=W;x+=3){const t=(x/L)*2*Math.PI;let y=Math.cos(t);y=y>0?Math.pow(y,1+steep*1.2):-Math.pow(-y,1-steep*.45); /* creste appuntite, cavi larghi */d+=`L${x} ${(sea-y*amp).toFixed(1)}`}
+  d+=`L${W} ${H}Z`;
+  /* cresta più vicina al centro per il surfista */
+  const k=Math.round((W*0.55)/L),cx=k*L,crest=sea-amp;
+  const sx=cx-L*0.18,sxy=sea-amp*0.55;   /* surfista sulla parete */
+  const ph=1.75*px;
+  const surfer=`<g transform="translate(${sx} ${sxy}) rotate(-12)">
+    <ellipse cx="0" cy="0" rx="${ph*.42}" ry="${ph*.045}" fill="#ff7a1a"/>
+    <g fill="#0a2230"><circle cx="${ph*.05}" cy="${-ph*.9}" r="${ph*.075}"/>
+    <path d="M${-ph*.03} ${-ph*.8}L${ph*.12} ${-ph*.8}L${ph*.1} ${-ph*.45}L${-ph*.05} ${-ph*.45}Z"/>
+    <path d="M${-ph*.04} ${-ph*.46}L${-ph*.2} ${-ph*.02}L${-ph*.12} 0L${ph*.02} ${-ph*.35}L${ph*.14} 0L${ph*.22} ${-ph*.02}L${ph*.1} ${-ph*.46}Z"/>
+    <path d="M0 ${-ph*.75}L${-ph*.32} ${-ph*.6}L${-ph*.3} ${-ph*.55}L${ph*.02} ${-ph*.66}ZM${ph*.08} ${-ph*.75}L${ph*.4} ${-ph*.68}L${ph*.38} ${-ph*.62}L${ph*.06} ${-ph*.66}Z"/></g></g>`;
+  /* schiuma sulle creste se l'onda è abbastanza alta */
+  let foam='';if(hgt>=0.5){for(let j=0;j*L<=W+L;j++){const x0=j*L;for(let q=0;q<7;q++){const fx=x0+(q-3)*L*0.025,fy=crest+Math.abs(q-3)*1.5;foam+=`<circle cx="${fx.toFixed(1)}" cy="${fy.toFixed(1)}" r="${(2+hgt*2.5-q%2).toFixed(1)}" fill="#fff" opacity=".85"/>`}}}
+  /* metro a sinistra */
+  const mx=Math.min(64,W*.09);let ruler=`<line x1="${mx}" x2="${mx}" y1="${sea+amp}" y2="${crest}" stroke="#ff7a1a" stroke-width="3"/><line x1="${mx-8}" x2="${mx+8}" y1="${sea+amp}" y2="${sea+amp}" stroke="#ff7a1a" stroke-width="3"/><line x1="${mx-8}" x2="${mx+8}" y1="${crest}" y2="${crest}" stroke="#ff7a1a" stroke-width="3"/>`;
+  ruler+=`<text x="${mx+12}" y="${(crest+sea+amp)/2+5}" font-family="Archivo Narrow" font-weight="700" font-size="20" fill="#fff" style="paint-order:stroke;stroke:#0a4d68;stroke-width:4px">${nf(hgt)} m</text>`;
+  /* distanza tra le creste */
+  const c1=cx,c2=cx+L,ly=crest-34;let span='';
+  if(c2<W-10)span=`<path d="M${c1} ${ly}H${c2}" stroke="#fff" stroke-width="2" stroke-dasharray="5 5"/><text x="${(c1+c2)/2}" y="${ly-8}" text-anchor="middle" font-family="Archivo" font-size="14" fill="#fff">${nf(per)} s e circa ${Math.round(1.56*per*per)} m tra un'onda e l'altra</text>`;
+  /* direzione */
+  const ang={N:0,NE:45,E:90,SE:135,S:180,SO:225,O:270,NO:315}[dir];
+  const comp=`<g transform="translate(${W-54} 54)"><circle r="34" fill="#ffffff22" stroke="#ffffff88"/><text y="-40" text-anchor="middle" font-size="12" fill="#fff">N</text><g transform="rotate(${(ang+180)%360})"><path d="M0 -24L8 -6H3V22H-3V-6H-8Z" fill="#fff"/></g><text y="52" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">da ${dir}</text></g>`;
+  box.innerHTML=`<svg viewBox="0 0 ${W} ${H}"><defs><linearGradient id="wsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a4d68"/><stop offset="1" stop-color="#4fb6cc"/></linearGradient><linearGradient id="wsea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#26b3c9"/><stop offset="1" stop-color="#06384d"/></linearGradient></defs>
+  <rect width="${W}" height="${H}" fill="url(#wsky)"/>
+  <path d="M0 ${sea-px*.05}Q${W*.25} ${sea-px*.3} ${W*.45} ${sea-px*.08}T${W} ${sea-px*.12}V${sea}H0Z" fill="#0b5f75" opacity=".5"/>
+  ${span}<path d="${d}" fill="url(#wsea)"/>${foam}${surfer}${ruler}${comp}</svg>`;
+  document.getElementById('wvinfo').innerHTML=`<div><b>${nf(hgt)} m</b><span>altezza onda</span></div><div><b>${nf(per)} s</b><span>periodo</span></div><div><b>~${Math.round(1.56*per*per)} m</b><span>tra un'onda e l'altra (al largo)</span></div><div><b>da ${dir}</b><span>provenienza</span></div><div><b>${qual(hgt,per)[1]}</b><span>per il surf</span></div>`;
+}
 function render(){
 /* scheda riassunto: giorno migliore */
 let best=0;D.hmax.forEach((h,i)=>{if(h*D.per[i]>D.hmax[best]*D.per[best])best=i});
@@ -159,7 +210,11 @@ const go=v=>{off=Math.max(0,Math.min(96,v));win.value=off;draw()};
 win.addEventListener('input',()=>go(+win.value));
 document.querySelectorAll('.hr button').forEach(b=>b.addEventListener('click',()=>go(off+6*b.dataset.dv)));
 const ro=new ResizeObserver(draw);ro.observe(s);
+WSEL=Math.min(WSEL,D.time.length-1);
+document.getElementById('wvdays').innerHTML=D.time.map((t,i)=>`<button data-i="${i}" aria-pressed="${i===WSEL}">${day(i)} · ${nf(D.hmax[i])} m</button>`).join('');
+new ResizeObserver(drawWave).observe(document.getElementById('wvscene'));
 }
+document.getElementById('wvdays').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;WSEL=+b.dataset.i;document.querySelectorAll('#wvdays button').forEach(x=>x.setAttribute('aria-pressed',x===b));drawWave()});
 load().catch(()=>{document.getElementById('now').innerHTML='<h2>Dati non disponibili</h2><p class="sub">Open-Meteo non risponde in questo momento. Riprova tra qualche minuto.</p>'});
 setInterval(()=>load().catch(()=>{}),3600000);
 /* Webcam: prova la foto dal vivo, ricaricata ogni 30 minuti; se non si carica resta la foto salvata */
