@@ -134,6 +134,7 @@ h3{margin:0 0 4px;font-size:18px}.hint{color:var(--mute);font-size:14px;margin:0
 /* webcam piccola in cima */
 .hgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,320px);gap:24px;align-items:center}
 .hcam{margin:0}.hcam .camimg{margin:0 0 6px;border:2px solid #ffffff55;box-shadow:0 6px 18px #0004}
+.hcam #camna{font:700 15px Archivo;color:#fff}
 .hcam figcaption{font-size:13px;color:#dff3f7;line-height:1.35}
 @media(max-width:760px){.hgrid{grid-template-columns:minmax(0,1fr);gap:14px}.hcam{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;align-items:center}.hcam .camimg{margin:0}}
 footer{text-align:center;color:var(--mute);font-size:13px;padding:28px 16px calc(28px + env(safe-area-inset-bottom,0px))}
@@ -149,7 +150,7 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:28px 16px calc
     <p class="long">Altezza delle onde, periodo e direzione per i prossimi 7 giorni. Onde: valore di mezzo tra 4 modelli (Météo-France, ECMWF, DWD, NOAA), da Open-Meteo Marine. Vento e pioggia da ECMWF. Dati ricaricati da soli ogni 10 minuti.</p>
     <div class="spots" id="spots"></div>
   </div>
-  <figure class="hcam"><a class="camimg" href="https://royalhotelsanremo.panomax.com/" target="_blank" rel="noopener" title="Apri la webcam dal vivo a 360°"><img id="camimg" alt="Webcam sul mare di Sanremo" src="https://imgproxy.windy.com/_/full/plain/current/1793906882/original.jpg" data-live="https://imgproxy.windy.com/_/full/plain/current/1793906882/original.jpg"></a><figcaption>Webcam Sanremo, Royal Hotel. Tocca per il 360° dal vivo. <span id="camt"></span></figcaption></figure>
+  <figure class="hcam"><a class="camimg" id="camlink" href="https://royalhotelsanremo.panomax.com/" target="_blank" rel="noopener" title="Apri la webcam dal vivo a 360°"><img id="camimg" alt="Webcam sul mare di Sanremo" src="https://imgproxy.windy.com/_/full/plain/current/1793906882/original.jpg" data-live="https://imgproxy.windy.com/_/full/plain/current/1793906882/original.jpg"><p id="camna" hidden>Webcam non disponibile</p></a><figcaption><span id="camn">Webcam Sanremo, Royal Hotel. Tocca per il 360° dal vivo.</span> <span id="camt"></span></figcaption></figure>
   </div>
   <svg class="sea" viewBox="0 0 1200 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30Q100 5 200 30T400 30T600 30T800 30T1000 30T1200 30V70H0Z" fill="#7fd3e0" opacity=".45"/><path d="M0 48Q100 28 200 48T400 48T600 48T800 48T1000 48T1200 48V70H0Z" fill="var(--bg)"/></svg>
 </header>
@@ -381,7 +382,7 @@ function drawMare(){if(!WX)return;const sp=SPOTS[SP];
   const sl=tabEl.scrollLeft;drawMap(mapEl,sp,WX,SEL);drawTable(tabEl,WX,SEL,STEP,facing(sp),ST);info();
   if(FIRST){tabEl.scrollLeft=0;FIRST=false}else tabEl.scrollLeft=sl;
   document.getElementById('upd').textContent='Aggiornato alle '+WX.upd.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'})+'; si aggiorna da solo ogni 10 minuti.'}
-elS.addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.dataset.k===SP)return;SP=b.dataset.k;SEL=null;FIRST=true;elS.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));load().catch(()=>{})});
+elS.addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.dataset.k===SP)return;SP=b.dataset.k;SEL=null;FIRST=true;setCam();elS.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));load().catch(()=>{})});
 tabEl.addEventListener('click',e=>{const c=e.target.closest('td[data-i]');if(!c)return;SEL=+c.dataset.i;drawMare()});
 const roMap=new ResizeObserver(()=>{if(WX)drawMap(mapEl,SPOTS[SP],WX,SEL)});roMap.observe(mapEl);
 const roWave=new ResizeObserver(drawWave);roWave.observe(document.getElementById('wvscene'));
@@ -390,8 +391,13 @@ load().catch(()=>{document.getElementById('now').innerHTML='<h2>Dati non disponi
 setInterval(()=>load().catch(()=>{}),600000);
 /* Webcam: prova la foto dal vivo, ricaricata ogni 30 minuti; se non si carica resta la foto salvata */
 const ci=document.getElementById('camimg'),saved=ci.src;ci.onerror=()=>{ci.style.visibility='hidden'};
-const camLoad=()=>{const t=new Image(),k=Math.floor(Date.now()/1800000);t.onload=()=>{ci.src=t.src;document.getElementById('camt').textContent='Foto delle '+new Date().toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'})+'.'};t.src=ci.dataset.live+'?v='+k};
-camLoad();setInterval(camLoad,1800000);
+const camLoad=()=>{if(!CAMS[SP])return;const t=new Image(),k=Math.floor(Date.now()/1800000);t.onload=()=>{ci.src=t.src;document.getElementById('camt').textContent='Foto delle '+new Date().toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'})+'.'};t.src=ci.dataset.live+'?v='+k};
+/* webcam diversa per ogni spot (Bussana non ne ha una sul mare: riquadro "non disponibile") */
+const CAMS={tre:['1793906882','Webcam Sanremo, Royal Hotel. Tocca per il 360° dal vivo.','https://royalhotelsanremo.panomax.com/'],bussana:null,imperia:['1712789918','Webcam Imperia, Porto Maurizio. Tocca per vederla dal vivo.','https://www.weathercam.it/webcam/imperia'],andora:['1515234946','Webcam Andora, Tortuga Beach. Tocca per vederla dal vivo.','https://vedetta.org/webcam/italia/liguria/savona/andora/']};
+function setCam(){const c=CAMS[SP],na=document.getElementById('camna'),lk=document.getElementById('camlink');na.hidden=!!c;ci.hidden=!c;
+  if(!c){lk.removeAttribute('href');lk.style.cursor='default';document.getElementById('camn').textContent='Nessuna webcam sul mare vicino a Bussana.';document.getElementById('camt').textContent='';return}
+  lk.style.cursor='';ci.style.visibility='';ci.dataset.live='https://imgproxy.windy.com/_/full/plain/current/'+c[0]+'/original.jpg';ci.alt=c[1];document.getElementById('camn').textContent=c[1];document.getElementById('camlink').href=c[2];document.getElementById('camt').textContent='';camLoad()}
+setCam();setInterval(camLoad,1800000);
 }
 </script>
 </body>
