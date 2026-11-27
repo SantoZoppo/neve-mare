@@ -43,7 +43,7 @@ header p{margin:0;color:#dff3f7;max-width:66ch}
 .arr{display:inline-block;transition:none}
 h3{margin:0 0 4px;font-size:18px}.hint{color:var(--mute);font-size:14px;margin:0 0 10px}
 .wv{margin-top:16px}
-.wvscene{position:relative;height:clamp(260px,36vw,400px);border-radius:12px;overflow:hidden}
+.wvscene{position:relative;height:clamp(170px,22vw,240px);border-radius:12px;overflow:hidden}
 .wvscene svg{position:absolute;inset:0;width:100%;height:100%}
 .wvinfo{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;padding:14px 0 4px}
 .wvinfo b{display:block;font:700 24px 'Archivo Narrow';white-space:nowrap}.wvinfo span{font-size:13px;color:var(--mute)}
@@ -64,6 +64,78 @@ h3{margin:0 0 4px;font-size:18px}.hint{color:var(--mute);font-size:14px;margin:0
 .fig text{font:13px Archivo;fill:var(--mute)}
 .leg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px;font-size:14px;color:var(--mute)}
 .leg b{color:var(--ink)}
+.spots{display:flex;flex-wrap:wrap;gap:8px}
+.spots button{font:700 17px Archivo;border:1px solid #ffffff66;background:#ffffff1f;color:#fff;border-radius:12px;padding:10px 18px;min-width:120px;min-height:64px;cursor:pointer;text-align:left}
+.spots button[aria-pressed=true]{background:#fff;color:#0a4d68;border-color:#fff}
+.spots small{display:block;font:700 24px/1.1 'Archivo Narrow',sans-serif;margin-top:2px;white-space:nowrap}
+.spots small i{font:400 12px Archivo;font-style:normal;opacity:.8;margin-left:4px}
+.map{position:relative;height:clamp(300px,44vw,440px);border-radius:12px;overflow:hidden;background:#1d5fa8}
+.map>svg{position:absolute;inset:0;width:100%;height:100%}
+.map text{font-family:Archivo,sans-serif}
+.tn{font-size:12px;fill:#e8f0fa;paint-order:stroke;stroke:#1b2c4bcc;stroke-width:3px}
+.sl{font-size:12px;font-weight:700;fill:#fff;paint-order:stroke;stroke:#0a2230;stroke-width:3px}
+.bt{font:700 13px 'Archivo Narrow',sans-serif;fill:#14202e}
+.bl{font:700 11px Archivo,sans-serif;fill:#14202e;letter-spacing:.02em}
+.st{stroke:#ffffff;stroke-width:1.4;stroke-linecap:round;opacity:0;animation:fly 3s linear infinite}
+@keyframes fly{0%{opacity:0;transform:rotate(var(--a)) translateX(-30px)}20%{opacity:.55}80%{opacity:.55}100%{opacity:0;transform:rotate(var(--a)) translateX(40px)}}
+@media(prefers-reduced-motion:reduce){.st{animation:none;opacity:.4;transform:rotate(var(--a))}}
+.minfo{display:grid;grid-template-columns:repeat(auto-fit,minmax(10em,1fr));gap:10px 16px;margin-top:12px}
+.minfo b{display:block;font:700 20px 'Archivo Narrow';white-space:nowrap}.minfo span{font-size:13px;color:var(--mute)}
+.minfo .s1 b{color:#e07b12}.minfo .s2 b{color:#3f9e22}
+.duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:stretch}
+@media(max-width:980px){.duo{grid-template-columns:minmax(0,1fr)}}
+.when{font:700 15px Archivo;margin:12px 0 0}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+.wt{border-collapse:separate;border-spacing:0;font:14px 'Archivo Narrow',sans-serif;white-space:nowrap}
+.wt th,.wt td{padding:5px 4px;text-align:center;border-bottom:1px solid var(--line);min-width:46px}
+.wt td{cursor:pointer}
+.wt td.col{color:#0a2230}
+.wt .lab{position:sticky;left:0;z-index:2;background:var(--card);text-align:left;font:600 13px Archivo;padding:5px 10px;min-width:92px;border-right:1px solid var(--line)}
+.wt .lab small{display:block;font-weight:400;color:var(--mute);font-size:12px;line-height:1}
+.wt .dh{text-align:left;font:700 14px Archivo;text-transform:capitalize;border-left:2px solid var(--line);padding-left:8px}
+.wt td b{font-weight:700;font-size:15px}.wt td small{display:block;font-size:12px;opacity:.75;line-height:1}
+.wt .ar{width:12px;height:14px;vertical-align:-2px;margin-right:2px}
+.wt .sky{width:26px;height:26px;display:block;margin:auto}
+.wt td.sel{box-shadow:inset 2px 0 0 #d33,inset -2px 0 0 #d33;background-color:color-mix(in srgb,#d33 6%,transparent)}
+.wt tr:last-child td.sel{box-shadow:inset 2px 0 0 #d33,inset -2px 0 0 #d33,inset 0 -2px 0 #d33}
+.wt tbody tr:first-child td.sel{box-shadow:inset 2px 0 0 #d33,inset -2px 0 0 #d33,inset 0 2px 0 #d33}
+.wk{font:600 12px Archivo;padding:1px 4px;border-radius:4px}
+.wk.off{background:#79e06a;color:#0a2230}.wk.xoff{background:#b9f0a8;color:#0a2230}.wk.x{background:#e6ecef;color:#0a2230}.wk.xon{background:#ffd9b0;color:#0a2230}.wk.on{background:#ffb09a;color:#0a2230}
+.wleg{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:10px;font-size:13px;color:var(--mute)}
+.xnote{background:light-dark(#fff4e8,#3a2616);border:1px solid #ff7a1a55;border-radius:12px;padding:12px 14px;font-size:14px}
+.note b{color:var(--ink)}
+@media(max-width:600px){.minfo{grid-template-columns:repeat(2,minmax(0,1fr))}.wt .lab{min-width:66px;padding:5px 6px;font-size:12px}.wt th,.wt td{min-width:40px;padding:5px 2px}.spots button{padding:8px 12px;font-size:15px;min-width:0;flex:1 1 40%}.spots small{font-size:20px}}
+.duo{margin-top:16px}
+.spots{margin-top:16px}
+.tg{display:flex;gap:8px;margin-bottom:10px}
+.tg button{font:600 14px Archivo;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:6px 12px;min-height:40px;cursor:pointer}
+.tg button[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+.camw{margin-top:16px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px;align-items:center}
+.camw .camimg{margin:0}
+@media(max-width:760px){.camw{grid-template-columns:minmax(0,1fr)}}
+
+/* telefono: dati più leggibili */
+.dscroll{overflow-x:auto;margin:0 -4px;padding:0 4px}
+.hshort{display:none}
+.wv{margin-top:16px}
+@media(max-width:600px){
+ header .long{display:none}
+ .dscroll .days{min-width:520px}
+ .d .mini{font-size:13px}
+ .wvdays{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}
+ .wvdays button{flex:0 0 auto}
+ .duo .hint,.wv .hint{font-size:13px}
+ .wt td b{font-size:15px}
+ .wt th,.wt td{min-width:50px!important}
+ .card{padding:16px}
+ .map{height:300px}
+}
+
+/* webcam piccola in cima */
+.hgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,320px);gap:24px;align-items:center}
+.hcam{margin:0}.hcam .camimg{margin:0 0 6px;border:2px solid #ffffff55;box-shadow:0 6px 18px #0004}
+.hcam figcaption{font-size:13px;color:#dff3f7;line-height:1.35}
+@media(max-width:760px){.hgrid{grid-template-columns:minmax(0,1fr);gap:14px}.hcam{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;align-items:center}.hcam .camimg{margin:0}}
 footer{text-align:center;color:var(--mute);font-size:13px;padding:28px 16px calc(28px + env(safe-area-inset-bottom,0px))}
 @media(max-width:600px){.d .q{font-size:0!important;width:12px;height:12px;padding:0!important;border-radius:50%}.d .mini{font-size:12px}}
 @media(max-width:760px){.top{grid-template-columns:minmax(0,1fr)}.leg{grid-template-columns:minmax(0,1fr)}.d .col{height:90px}.d b{font-size:15px}}
@@ -71,10 +143,13 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:28px 16px calc
 </head>
 <body>
 <header class="band">
-  <div class="wrap">
+  <div class="wrap hgrid"><div>
     <a class="back" href="./">← Torna alla scelta</a>
-    <h1>Onde a Tre Ponti, Sanremo</h1>
-    <p>Altezza delle onde, periodo e direzione per i prossimi 7 giorni. Onde: valore di mezzo tra 4 modelli (Météo-France, ECMWF, DWD, NOAA), da Open-Meteo Marine. Vento e pioggia da ECMWF.</p>
+    <h1 id="ttl">Onde a Tre Ponti, Sanremo</h1>
+    <p class="long">Altezza delle onde, periodo e direzione per i prossimi 7 giorni. Onde: valore di mezzo tra 4 modelli (Météo-France, ECMWF, DWD, NOAA), da Open-Meteo Marine. Vento e pioggia da ECMWF. Dati ricaricati da soli ogni 10 minuti.</p>
+    <div class="spots" id="spots"></div>
+  </div>
+  <figure class="hcam"><a class="camimg" href="https://royalhotelsanremo.panomax.com/" target="_blank" rel="noopener" title="Apri la webcam dal vivo a 360°"><img id="camimg" alt="Webcam sul mare di Sanremo" src="https://imgproxy.windy.com/_/full/plain/current/1793906882/original.jpg" data-live="https://imgproxy.windy.com/_/full/plain/current/1793906882/original.jpg"></a><figcaption>Webcam Sanremo, Royal Hotel. Tocca per il 360° dal vivo. <span id="camt"></span></figcaption></figure>
   </div>
   <svg class="sea" viewBox="0 0 1200 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30Q100 5 200 30T400 30T600 30T800 30T1000 30T1200 30V70H0Z" fill="#7fd3e0" opacity=".45"/><path d="M0 48Q100 28 200 48T400 48T600 48T800 48T1000 48T1200 48V70H0Z" fill="var(--bg)"/></svg>
 </header>
@@ -82,38 +157,137 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:28px 16px calc
   <div class="wrap">
     <div class="top">
       <section class="card now" id="now"></section>
-      <section class="card"><h3>I prossimi 7 giorni</h3><p class="hint">Onda più alta del giorno, periodo, da dove arriva e probabilità di rovesci (☂, ECMWF) e quanto i 4 modelli sono d'accordo: <b style="color:#1a9b5a">●</b> d'accordo, <b style="color:#b98500">●</b> abbastanza, <b style="color:#c0392b">●</b> incerti.</p><div class="days" id="days"></div></section>
+      <section class="card"><h3>I prossimi 7 giorni</h3><p class="hint">Onda più alta del giorno, periodo, da dove arriva e probabilità di rovesci (☂, ECMWF) e quanto i 4 modelli sono d'accordo: <b style="color:#1a9b5a">●</b> d'accordo, <b style="color:#b98500">●</b> abbastanza, <b style="color:#c0392b">●</b> incerti.</p><div class="dscroll"><div class="days" id="days"></div></div></section>
+    </div>
+    <div class="duo">
+    <section class="card"><h3>Da dove arriva il mare</h3><p class="hint">Come su Windy: barra arancio = swell principale, verde = secondo swell. Puntano allo spot dalla direzione da cui arriva l'onda; più è lunga più l'onda è alta. Righe bianche = vento.</p>
+      <div class="map" id="map"></div><p class="when" id="when"></p><div class="minfo" id="minfo"></div></section>
+    <section class="card"><h3>Ora per ora</h3><p class="hint">Scorri di lato per i giorni dopo e tocca una colonna per vederla sulla mappa. Colori come Windy: più è scuro, più vento o onda. Freccia = dove va.</p>
+      <div class="scroll" id="tab"></div>
+      <div class="wleg"><span><span class="wk off">da terra</span> il vento pulisce le onde</span><span><span class="wk x">laterale</span></span><span><span class="wk on">dal mare</span> le rovina</span><span>Energia (kW/m): quanta forza porta l'onda</span></div>
+      <p class="hint" id="upd" style="margin:8px 0 0"></p></section>
     </div>
     <section class="card wv"><h3>Come sarà l'onda</h3><p class="hint">Disegnata in scala accanto a un surfista alto 1,75 m. La distanza tra le onde cresce col periodo (1,56 × periodo², al largo; il disegno non è in scala in larghezza). Vicino a riva, dove frange, la parete può sembrare un po' più alta.</p>
       <div class="wvscene" id="wvscene"></div><div class="wvinfo" id="wvinfo"></div><div class="wvdays" id="wvdays"></div></section>
-    <div class="row2"><section class="card chart">
-      <h3 id="ctitle">Onda ora per ora</h3>
-      <p class="hint">7 giorni ora per ora, 3 alla volta: sposta il cursore per andare avanti e indietro. Area azzurra: altezza dell'onda (valore di mezzo tra 4 modelli); fascia chiara: dal modello più basso al più alto, più è stretta più la previsione è sicura. Linea arancio: periodo (sopra 7 secondi le onde sono più ordinate e potenti), mostrato solo quando l'onda supera 0,5 m. In alto: da dove arriva l'onda (N, S, SO...) e la freccia che mostra dove va, ogni 3 ore. Striscia blu sotto il grafico (☂): probabilità di rovesci, più è scura più è probabile.</p>
-      <div class="fig" id="fig"></div>
-      <div class="hr"><button data-dv="-1" aria-label="6 ore prima">‹</button><input type="range" min="0" max="96" step="6" value="0" id="win" aria-label="Sposta i giorni del grafico"><button data-dv="1" aria-label="6 ore dopo">›</button></div>
-      <div class="leg">
-        <div><b>Altezza</b>: quanto è alta l'onda in media (in metri). Sotto 0,5 m a Tre Ponti è quasi piatto.</div>
-        <div><b>Periodo</b>: i secondi tra un'onda e l'altra. Più è lungo, meglio si surfa.</div>
-        <div><b>Vento</b>: da nord (da terra) pulisce le onde; da sud (dal mare) le rovina.</div>
-      </div>
-    </section>
-    <section class="card cam"><h3>Webcam sul mare</h3><p class="hint">Sanremo, Royal Hotel: vista verso sud-est, si aggiorna ogni mezz'ora. <span id="camt"></span></p>
-      <a class="camimg" href="https://royalhotelsanremo.panomax.com/" target="_blank" rel="noopener" title="Apri la webcam dal vivo a 360°"><img id="camimg" alt="Webcam sul mare di Sanremo" src="https://imgproxy.windy.com/_/full/plain/current/1793906882/original.jpg" data-live="https://imgproxy.windy.com/_/full/plain/current/1793906882/original.jpg"></a><p class="hint" style="margin:0">Clicca sulla foto per aprire la webcam dal vivo a 360°.</p></section></div>
   </div>
 </main>
 <footer>Edit by PROP-ANO</footer>
 <script>
 {
-const LAT=43.808,LON=7.81;
+/* ==== MARE: spot, mappa stile Windy, tabella ora per ora stile Windy ==== */
+const SPOTS={tre:{n:'Tre Ponti',c:'Sanremo',lat:43.808,lon:7.81,mlat:43.8212,mlon:7.8128},bussana:{n:'Bussana',c:'Sanremo',lat:43.8195,lon:7.8386},imperia:{n:'Imperia',c:'Imperia',lat:43.875,lon:8.0212},andora:{n:'Andora',c:'Andora',lat:43.9496,lon:8.1532}};
+const TOWNS=[['Ventimiglia',7.608,43.790],['Bordighera',7.665,43.781],['Sanremo',7.776,43.817],['Arma di Taggia',7.855,43.831],['Imperia',8.027,43.886],['Diano Marina',8.081,43.910],['Andora',8.140,43.956],['Alassio',8.170,44.005],['Monaco',7.424,43.738]];
+/* costa da OpenStreetMap, semplificata: coppie (lon-7)*1e4,(lat-43)*1e4 */
+const COAST=[4885,7652,4930,7695,4953,7694,4949,7701,4994,7716,5014,7733,5055,7742,5065,7732,5110,7753,5128,7769,5095,7753,5087,7769,5114,7770,5105,7781,5092,7772,5083,7782,5092,7799,5108,7789,5114,7798,5099,7800,5105,7811,5117,7815,5121,7805,5223,7831,5150,7819,5145,7830,5199,7842,5204,7830,5217,7846,5255,7850,5366,7829,5381,7835,5400,7825,5396,7839,5424,7844,5501,7810,5533,7818,5556,7800,5582,7813,5571,7834,5594,7845,5586,7846,5590,7852,5598,7849,5586,7866,5595,7883,5634,7899,5674,7901,5691,7921,5738,7928,5910,7918,5958,7892,5973,7895,5970,7880,5975,7895,5995,7900,6005,7896,5991,7897,5995,7888,5985,7895,5987,7884,6007,7895,6005,7878,5949,7876,5958,7870,5996,7871,6029,7889,6106,7866,6123,7870,6153,7854,6175,7857,6184,7848,6197,7854,6212,7844,6223,7850,6260,7838,6261,7847,6274,7848,6284,7842,6276,7835,6289,7845,6399,7821,6416,7825,6429,7815,6452,7819,6459,7810,6469,7817,6520,7803,6524,7794,6537,7800,6650,7769,6713,7768,6729,7757,6751,7787,6782,7804,6754,7792,6779,7824,6831,7853,6870,7858,6880,7875,6945,7913,6939,7934,6962,7965,7006,7989,7026,7991,7034,7975,7089,7981,7032,7978,7029,7989,7101,8004,7113,8002,7113,7989,7110,8008,7124,7999,7121,8006,7137,8009,7149,8006,7148,7998,7161,8004,7182,7997,7179,7990,7184,7998,7230,7992,7347,7953,7389,7954,7400,7969,7420,7975,7408,7976,7440,8006,7489,8022,7532,8061,7526,8066,7534,8073,7612,8074,7605,8080,7623,8091,7639,8085,7629,8088,7632,8094,7657,8094,7638,8094,7661,8099,7668,8117,7691,8131,7705,8122,7699,8127,7709,8133,7721,8127,7754,8137,7761,8127,7762,8137,7871,8150,7789,8145,7796,8150,7786,8151,7805,8152,7786,8151,7793,8161,7804,8154,7796,8161,7826,8160,7812,8165,7838,8162,7820,8166,7831,8189,7846,8193,7850,8177,7870,8173,7860,8184,7870,8196,7875,8178,7876,8197,7886,8198,7888,8180,7886,8198,7897,8199,7899,8181,7897,8199,7906,8199,7908,8183,7907,8199,7915,8199,7916,8184,7915,8199,7924,8185,7923,8199,7929,8186,7928,8198,7935,8186,7934,8198,7940,8189,7943,8196,7951,8187,7945,8182,7883,8165,7869,8169,7885,8159,7892,8169,7953,8182,7955,8195,8046,8232,8149,8221,8282,8165,8331,8163,8398,8205,8417,8258,8505,8302,8597,8306,8594,8315,8605,8317,8606,8309,8632,8325,8661,8328,8684,8349,8724,8361,8780,8361,8786,8353,8789,8362,8808,8356,8798,8362,8829,8372,8835,8363,8855,8363,8836,8372,8856,8366,8895,8379,8897,8372,8884,8369,8898,8370,8902,8381,8913,8379,8905,8372,8924,8379,8926,8370,8939,8369,8933,8374,8944,8378,9006,8359,9010,8369,9035,8365,9036,8358,9052,8367,9069,8364,9066,8357,9123,8363,9173,8384,9099,8362,9081,8361,9079,8371,9103,8382,9084,8370,9108,8376,9087,8366,9116,8371,9108,8386,9115,8390,9130,8376,9122,8393,9137,8379,9125,8393,9141,8381,9134,8398,9148,8384,9139,8400,9156,8383,9147,8402,9166,8409,9144,8413,9156,8410,9176,8435,9225,8446,9404,8452,9424,8464,9495,8471,9562,8500,9582,8495,9603,8506,9620,8503,9614,8508,9626,8516,9639,8509,9642,8525,9650,8517,9673,8525,9675,8533,9657,8523,9670,8530,9663,8533,9666,8546,9689,8553,9713,8586,9691,8562,9675,8560,9690,8566,9681,8571,9693,8568,9681,8572,9694,8572,9683,8575,9696,8575,9685,8579,9691,8589,9702,8588,9695,8600,9708,8608,9768,8627,9939,8653,9980,8675,10021,8676,10017,8687,10032,8697,10065,8697,10069,8690,10083,8702,10070,8701,10090,8713,10138,8715,10194,8738,10187,8745,10196,8758,10221,8766,10294,8747,10301,8755,10292,8750,10215,8772,10196,8768,10187,8784,10219,8798,10232,8774,10244,8782,10255,8773,10230,8797,10260,8777,10261,8788,10252,8787,10259,8792,10247,8791,10256,8797,10242,8795,10253,8803,10235,8800,10269,8814,10271,8806,10258,8804,10272,8801,10260,8799,10272,8801,10263,8793,10278,8789,10267,8785,10280,8787,10269,8782,10283,8783,10271,8778,10283,8783,10293,8774,10277,8763,10297,8769,10302,8776,10283,8794,10278,8821,10299,8839,10340,8845,10350,8836,10361,8860,10364,8853,10378,8863,10391,8840,10386,8859,10414,8854,10406,8874,10447,8876,10441,8851,10388,8825,10461,8859,10456,8871,10462,8863,10469,8865,10461,8871,10474,8875,10503,8865,10507,8874,10545,8867,10556,8876,10595,8876,10600,8884,10681,8891,10727,8911,10770,8938,10800,8970,10829,8976,10792,8983,10773,9012,10778,9033,10803,9061,10815,9060,10809,9065,10820,9076,10834,9082,10846,9074,10838,9088,10860,9088,10852,9097,10859,9103,10869,9097,10856,9080,10864,9080,10872,9097,10860,9104,10921,9156,11034,9200,11046,9197,11041,9191,11051,9199,11058,9192,11076,9197,11062,9195,11053,9205,11066,9209,11071,9200,11071,9209,11121,9226,11093,9216,11108,9230,11130,9238,11119,9229,11145,9232,11140,9240,11163,9250,11175,9244,11178,9253,11207,9259,11280,9265,11324,9317,11345,9328,11334,9327,11341,9332,11336,9362,11351,9375,11360,9420,11391,9443,11385,9448,11394,9448,11400,9464,11431,9480,11446,9478,11455,9491,11487,9504,11514,9507,11521,9500,11520,9508,11539,9512,11549,9495,11596,9498,11602,9504,11554,9498,11545,9513,11573,9520,11576,9506,11574,9521,11583,9523,11583,9507,11594,9507,11590,9521,11604,9526,11626,9518,11696,9522,11739,9548,11742,9572,11733,9591,11684,9628,11647,9682,11613,9701,11602,9725,11593,9771,11599,9796,11609,9800,11595,9800,11594,9816,11618,9894,11680,9998,11726,10050,11740,10043,11728,10052,11771,10096,11858,10152,11932,10155,11943,10164,11948,10192,11937,10162,11920,10176,11936,10180,11921,10184,11930,10188,11921,10192,11931,10192,11921,10195,11936,10189,11935,10198,11922,10200,11924,10213,11934,10225,11944,10220,11935,10226,11954,10241,11982,10252,12022,10308,12073,10327,12089,10351,12155,10375,12258,10431,12271,10454,12265,10458,12276,10493,12260,10505,12267,10515,12259,10520,12264,10539,12251,10622,12269,10807,12285,10824,12279,10831,12291,10842,12286,10852,12305,10879,12302,10890,12314,10896,12307,10902,12321,10914,12319,10927,12373,10994,12363,11004,12380,11015,12377,11024];
+const CP=[];for(let i=0;i<COAST.length;i+=2)CP.push([7+COAST[i]/1e4,43+COAST[i+1]/1e4]);
+const KX=Math.cos(43.85*Math.PI/180);
+const nf=(x,d=1)=>x==null?'–':x.toFixed(d).replace('.',',');
+const card=d=>d==null?'':['N','NE','E','SE','S','SO','O','NO'][Math.round(d/45)%8];
+/* dove guarda la spiaggia (verso il mare), calcolato dalla costa */
+function facing(sp){let bi=0,bd=1e9;CP.forEach((p,i)=>{const d=((p[0]-sp.lon)*KX)**2+(p[1]-sp.lat)**2;if(d<bd){bd=d;bi=i}});
+  const a=CP[Math.max(0,bi-8)],b=CP[Math.min(CP.length-1,bi+8)];const tx=(b[0]-a[0])*KX,ty=b[1]-a[1];let nx=ty,ny=-tx;if(ny>0){nx=-nx;ny=-ny}
+  return Math.round((Math.atan2(nx,ny)*180/Math.PI+360)%360)}
+function windKind(wd,face){if(wd==null)return['',''];const diff=Math.abs(((wd-face+540)%360)-180);return diff<=45?['on','dal mare']:diff<=80?['xon','laterale dal mare']:diff<=110?['x','laterale']:diff<=135?['xoff','laterale da terra']:['off','da terra']}
+/* colori stile Windy */
+const scale=(stops,v)=>{if(v==null)return'';let c='';for(const [t,col] of stops)if(v>=t)c=col;return c};
+const CW=[[5,'#eaf7ef'],[10,'#c9eed4'],[15,'#a3e3b8'],[20,'#79d4c2'],[30,'#5bbbe6'],[40,'#7b8ff0'],[50,'#b07ce8']];
+const CH=[[0.2,'#eef2fd'],[0.4,'#dbe4fc'],[0.6,'#c5d2fa'],[0.9,'#aebbf5'],[1.3,'#9ba3ee'],[1.8,'#9487e4'],[2.5,'#a46fd6']];
+const CPe=[[3,'#fffaea'],[5,'#fff1c4'],[7,'#ffe38f'],[9,'#ffcf5e'],[11,'#ffb347']];
+const CE=[[1,'#e6eefc'],[3,'#cddcfa'],[6,'#aec4f5'],[10,'#8fa9ee'],[20,'#7a8be3']];
+const arr=(d,c='currentColor')=>d==null?'':`<svg class="ar" viewBox="-6 -7 12 14" style="transform:rotate(${(d+180)%360}deg)"><path d="M0 -6L5 3H1.6V7H-1.6V3H-5Z" fill="${c}"/></svg>`;
+/* icone del cielo */
+function sky(code,isDay){const sun=`<circle cx="9" cy="9" r="4.2" fill="#ffc23d"/><g stroke="#ffc23d" stroke-width="1.6" stroke-linecap="round">${[0,45,90,135,180,225,270,315].map(a=>{const r=a*Math.PI/180;return`<line x1="${9+6*Math.cos(r)}" y1="${9+6*Math.sin(r)}" x2="${9+7.8*Math.cos(r)}" y2="${9+7.8*Math.sin(r)}"/>`}).join('')}</g>`,
+  moon=`<path d="M11.5 3.5a6 6 0 1 0 4 9.5a5 5 0 0 1-4-9.5Z" fill="#c9d4ec"/>`,
+  cloud=(x,y,c)=>`<path transform="translate(${x} ${y})" d="M4 14h11a3.5 3.5 0 0 0 0-7a5 5 0 0 0-9.5 1A3 3 0 0 0 4 14Z" fill="${c}"/>`,
+  drops=`<g stroke="#3b78e0" stroke-width="1.6" stroke-linecap="round"><line x1="9" y1="19" x2="8" y2="22"/><line x1="13" y1="19" x2="12" y2="22"/><line x1="17" y1="19" x2="16" y2="22"/></g>`,
+  bolt=`<path d="M13 17l-3 5h3l-1 3l4-6h-3l1-2Z" fill="#ffb000"/>`,
+  base=isDay?sun:moon;let g;
+  if(code==null)g='';else if(code<=1)g=base;else if(code==2)g=base+cloud(5,6,'#b9c6d6');else if(code==3||code==45||code==48)g=cloud(2,3,'#9fb0c4')+cloud(7,6,'#b9c6d6');
+  else if(code>=95)g=cloud(3,2,'#7d8ea4')+bolt;else if(code>=71&&code<=77||code==85||code==86)g=cloud(3,2,'#9fb0c4')+`<g fill="#9cc7ff"><circle cx="9" cy="21" r="1.4"/><circle cx="14" cy="22" r="1.4"/><circle cx="19" cy="21" r="1.4"/></g>`;else g=cloud(3,2,'#8fa1b8')+drops;
+  return`<svg class="sky" viewBox="0 0 26 26">${g}</svg>`}
+const GGL=['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
+const dayName=t=>{const d=new Date(t);return GGL[d.getDay()]+' '+d.getDate()};
+
+/* ---------- MAPPA ---------- */
+function drawMap(box,sp,S,i){const W=box.clientWidth,H=box.clientHeight,small=W<520,z=sp.z||.32,span=(small?.34:.56)*z,clon=sp.mlon||sp.lon,clat=(sp.mlat||sp.lat)-(small?.03:.035)*z;
+  const pl=W/span,pt=pl/KX,X=lon=>W/2+(lon-clon)*pl,Y=lat=>H/2-(lat-clat)*pt;
+  const land='M'+CP.map(p=>X(p[0]).toFixed(1)+' '+Y(p[1]).toFixed(1)).join('L')+`L${X(8.7)} ${Y(44.6)}L${X(7.0)} ${Y(44.6)}L${X(7.0)} ${Y(43.76)}Z`;
+  const cx=X(sp.mlon||sp.lon),cy=Y(sp.mlat||sp.lat);
+  /* striature del vento */
+  const wd=S.wd[i],ws=S.ws[i]||0;let wind='';
+  if(wd!=null){let s=7;const rnd=()=>(s=s*16807%2147483647)/2147483647;const cnt=small?26:44;
+    for(let k=0;k<cnt;k++){const x=rnd()*W,y=rnd()*H,l=10+Math.min(ws,40)*.9;wind+=`<line class="st" x1="${x.toFixed(0)}" y1="${y.toFixed(0)}" x2="${(x+l).toFixed(0)}" y2="${y.toFixed(0)}" style="animation-delay:-${(rnd()*3).toFixed(2)}s;transform-origin:${x.toFixed(0)}px ${y.toFixed(0)}px;--a:${((wd+90)%360)}deg"/>`}}
+  /* barre dello swell, come Windy */
+  const bar=(h,p,d,col,lab)=>{if(h==null||d==null||h<0.05)return'';const len=Math.min(small?130:180,(small?72:84)+h*(small?60:95)),r0=16;
+    const flip=d>180;const tx=r0+len/2;
+    return`<g transform="translate(${cx} ${cy}) rotate(${d-90})"><path d="M${r0} 0L${r0+14} -11H${r0+len}V11H${r0+14}Z" fill="${col}" stroke="#0007" stroke-width="1"/>
+    <g transform="translate(${tx+8} 0) rotate(${flip?180:0})"><text class="bt" text-anchor="middle" y="5">${nf(h)} m, ${Math.round(p||0)} s</text></g>
+    <g transform="translate(${r0+len+6} 0) rotate(${flip?180:0})"><rect x="${flip?-58:0}" y="-9" width="58" height="18" rx="4" fill="#fff" stroke="${col}"/><text class="bl" x="${flip?-29:29}" y="4.5" text-anchor="middle">${lab}</text></g></g>`};
+  const R=small?84:118;
+  const spots=Object.entries(SPOTS).filter(([k,s])=>s===sp).map(([k,s])=>{const x=X(s.mlon||s.lon),y=Y(s.mlat||s.lat);if(x<-20||x>W+20||y<-20||y>H+20)return'';const on=s===sp;
+    return`<g class="spt" data-k="${k}" transform="translate(${x} ${y})" style="cursor:pointer"><circle r="${on?7:5}" fill="${on?'#ff7a1a':'#fff'}" stroke="#0a2230" stroke-width="2"/>${on?'':`<text class="sl" x="9" y="16">${s.n}</text>`}</g>`}).join('');
+  const towns=TOWNS.map(([n,lo,la])=>{const x=X(lo),y=Y(la);if(x<10||x>W-40||y<14||y>H-6)return'';return`<g transform="translate(${x} ${y})"><circle r="2.5" fill="#dfe8f5"/><text class="tn" x="0" y="-8" text-anchor="middle">${n}</text></g>`}).join('');
+  box.innerHTML=`<svg viewBox="0 0 ${W} ${H}"><defs><linearGradient id="msea" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#1d5fa8"/><stop offset=".7" stop-color="#2a86b8"/><stop offset="1" stop-color="#34a8a4"/></linearGradient><linearGradient id="mland" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b3f68"/><stop offset="1" stop-color="#3f5687"/></linearGradient></defs>
+  <rect width="${W}" height="${H}" fill="url(#msea)"/><path d="${land}" fill="url(#mland)" stroke="#9fc4e8" stroke-width="1.2"/>
+  <g class="wind">${wind}</g>${towns}
+  <circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#ffffffcc" stroke-width="1.4"/>
+  ${bar(S.s2h[i],S.s2p[i],S.s2d[i],'#7ee05a','SWELL 2')}${bar(S.s1h[i],S.s1p[i],S.s1d[i],'#ffb257','SWELL 1')}
+  <g stroke="#fff" stroke-width="3" stroke-linecap="round"><line x1="${cx}" y1="${cy-24}" x2="${cx}" y2="${cy-12}"/><line x1="${cx}" y1="${cy+12}" x2="${cx}" y2="${cy+24}"/><line x1="${cx-24}" y1="${cy}" x2="${cx-12}" y2="${cy}"/><line x1="${cx+12}" y1="${cy}" x2="${cx+24}" y2="${cy}"/></g>
+  ${spots}<text class="tn" x="${W-12}" y="${H-12}" text-anchor="end">costa © OpenStreetMap</text></svg>`;
+}
+
+/* ---------- TABELLA ---------- */
+function drawTable(el,S,sel,step,face,st=0){const idx=[];for(let i=st;i<S.t.length;i+=step)idx.push(i);
+  let days='',cur='',span=0;const flush=()=>{if(span)days+=`<th colspan="${span}" class="dh">${cur}</th>`};
+  idx.forEach(i=>{const dn=dayName(S.t[i]);if(dn!==cur){flush();cur=dn;span=0}span++});flush();
+  const td=(i,inner,bg='',cls='')=>`<td data-i="${i}" class="${cls}${i===sel?' sel':''}${bg?' col':''}"${bg?` style="background:${bg}"`:''}>${inner}</td>`;
+  const row=(lab,unit,f)=>`<tr><th class="lab">${lab}<small>${unit}</small></th>${idx.map(f).join('')}</tr>`;
+  const en=i=>S.h[i]?Math.round(.49*S.h[i]*S.h[i]*S.p[i]*10)/10:0;
+  el.innerHTML=`<table class="wt"><thead><tr><th class="lab"></th>${days}</tr></thead><tbody>
+  ${row('Ora','',i=>td(i,`<b>${new Date(S.t[i]).getHours()}</b>`))}
+  ${row('Cielo','',i=>td(i,sky(S.wc[i],S.day[i])))}
+  ${row('Temp.','°C',i=>td(i,S.T[i]==null?'–':S.T[i]+'°'))}
+  ${row('Vento','km/h',i=>td(i,`${arr(S.wd[i])}<b>${S.ws[i]??'–'}</b><small>${S.wg[i]??''}</small>`,scale(CW,S.ws[i])))}
+  ${row('Spiaggia','vento',i=>{const k=windKind(S.wd[i],face);return td(i,`<span class="wk ${k[0]}">${{'da terra':'terra','laterale da terra':'lat. terra','laterale':'laterale','laterale dal mare':'lat. mare','dal mare':'mare'}[k[1]]||''}</span>`)})}
+  ${row('Onda','m',i=>td(i,`${arr(S.d[i])}<b>${nf(S.h[i])}</b>`,scale(CH,S.h[i])))}
+  ${row('Swell 1','m',i=>td(i,`${arr(S.s1d[i],'#e07b12')}<b>${nf(S.s1h[i])}</b>`,scale(CH,S.s1h[i])))}
+  ${row('Swell 2','m',i=>td(i,S.s2h[i]>=.05?`${arr(S.s2d[i],'#3f9e22')}<b>${nf(S.s2h[i])}</b>`:'–',scale(CH,S.s2h[i])))}
+  ${row('Periodo','s',i=>td(i,nf(S.p[i]),scale(CPe,S.p[i])))}
+  ${row('Energia','kW/m',i=>td(i,nf(en(i)),scale(CE,en(i))))}
+  ${row('Pioggia','%',i=>td(i,S.rp[i]?Math.round(S.rp[i]):'',S.rp[i]>=20?'#bcd3ff':''))}
+  </tbody></table>`;
+}
+
+function build(w,v){
+  const MODS=['meteofrance_wave','ecmwf_wam025','dwd_ewam','ncep_gfswave025'];
+  const wh=w.hourly,vh=v.hourly||{},n=wh.time.length,r1=x=>x==null?null:Math.round(x*10)/10;
+  const med=a=>{a=a.filter(x=>x!=null).sort((p,q)=>p-q);if(!a.length)return null;const m=a.length>>1;return a.length%2?a[m]:(a[m-1]+a[m])/2};
+  const vmean=a=>{a=a.filter(x=>x!=null);if(!a.length)return null;let s=0,c=0;a.forEach(d=>{s+=Math.sin(d*Math.PI/180);c+=Math.cos(d*Math.PI/180)});return Math.round((Math.atan2(s,c)*180/Math.PI+360)%360)};
+  const at=(k,i,ok)=>MODS.map(m=>{const a=wh[k+'_'+m];const x=a?a[i]:null;return x!=null&&(!ok||ok(m,i))?x:null});
+  const S={t:wh.time,h:[],lo:[],hi:[],p:[],d:[],s1h:[],s1d:[],s1p:[],s2h:[],s2d:[],s2p:[],T:[],wc:[],ws:[],wd:[],wg:[],rp:[],day:[]};
+  for(let i=0;i<n;i++){
+    const hv=at('wave_height',i).filter(x=>x!=null);
+    S.h.push(r1(med(hv))??0);S.lo.push(hv.length?r1(Math.min(...hv)):0);S.hi.push(hv.length?r1(Math.max(...hv)):0);
+    S.p.push(r1(med(at('wave_period',i)))??0);S.d.push(vmean(at('wave_direction',i))??0);
+    const s1=at('swell_wave_height',i);S.s1h.push(r1(med(s1)));S.s1p.push(r1(med(at('swell_wave_period',i))));S.s1d.push(vmean(at('swell_wave_direction',i)));
+    const s2=at('secondary_swell_wave_height',i).map(x=>x>0.02?x:null),ok=s2.map(x=>x!=null);
+    S.s2h.push(r1(med(s2)));S.s2p.push(r1(med(at('secondary_swell_wave_period',i).map((x,j)=>ok[j]?x:null))));S.s2d.push(vmean(at('secondary_swell_wave_direction',i).map((x,j)=>ok[j]?x:null)));
+    const g=k=>vh[k]?vh[k][i]:null;
+    S.T.push(g('temperature_2m')==null?null:Math.round(g('temperature_2m')));S.wc.push(g('weather_code'));S.ws.push(g('wind_speed_10m')==null?null:Math.round(g('wind_speed_10m')));S.wd.push(g('wind_direction_10m'));S.wg.push(g('wind_gusts_10m')==null?null:Math.round(g('wind_gusts_10m')));S.rp.push(g('precipitation_probability'));S.day.push(g('is_day'));
+  }
+  return S;
+}
+
+let SP='tre',SEL=null,STEP=1,WX=null,FIRST=true;
 /* 4 modelli delle onde: si usa il valore di mezzo (mediana), la fascia chiara mostra il minimo e il massimo */
 const MODS=['meteofrance_wave','ecmwf_wam025','dwd_ewam','ncep_gfswave025'];
 const med=a=>{a=a.filter(x=>x!=null).sort((p,q)=>p-q);if(!a.length)return null;const m=a.length>>1;return a.length%2?a[m]:(a[m-1]+a[m])/2};
 let D,H,P,DIRS,RAIN=[],LO=[],HI=[];
 async function load(){
-  const q='latitude='+LAT+'&longitude='+LON+'&timezone=Europe%2FRome&forecast_days=7';
+  const sp=SPOTS[SP],q='latitude='+sp.lat+'&longitude='+sp.lon+'&timezone=Europe%2FRome&forecast_days=7';
   const [w,v]=await Promise.all([
-    fetch('https://marine-api.open-meteo.com/v1/marine?'+q+'&hourly=wave_height,wave_period,wave_direction&models='+MODS.join(',')).then(r=>r.json()),
-    fetch('https://api.open-meteo.com/v1/forecast?'+q+'&daily=wind_speed_10m_max,wind_direction_10m_dominant,precipitation_probability_max&hourly=precipitation_probability&models=ecmwf_ifs025').then(r=>r.json())]);
+    fetch('https://marine-api.open-meteo.com/v1/marine?'+q+'&hourly=wave_height,wave_period,wave_direction,swell_wave_height,swell_wave_direction,swell_wave_period,secondary_swell_wave_height,secondary_swell_wave_direction,secondary_swell_wave_period&models='+MODS.join(',')).then(r=>r.json()),
+    fetch('https://api.open-meteo.com/v1/forecast?'+q+'&daily=wind_speed_10m_max,wind_direction_10m_dominant,precipitation_probability_max&hourly=precipitation_probability,temperature_2m,weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,is_day&models=ecmwf_ifs025').then(r=>r.json())]);
   const z=a=>(a||[]).map(x=>x??0);
   const wh=w.hourly,n=wh.time.length,col=k=>MODS.map(m=>wh[k+'_'+m]||[]);
   const hs=col('wave_height'),ps=col('wave_period'),ds=col('wave_direction');
@@ -124,12 +298,10 @@ async function load(){
     const mm=hs.map(a=>{const x=a.slice(d*24,d*24+24).filter(y=>y!=null);return x.length?Math.max(...x):null}).filter(x=>x!=null),sp=mm.length>1?Math.max(...mm)-Math.min(...mm):0;
     agree.push(sp<=Math.max(.2,mx*.2)?['b','d\'accordo']:sp<=Math.max(.4,mx*.4)?['d','abbastanza']:['p','incerti'])}
   D={time:days,hmax,dir,per,agree,wind:z(v.daily?.wind_speed_10m_max),wdir:z(v.daily?.wind_direction_10m_dominant),rain:z(v.daily?.precipitation_probability_max)};RAIN=z(v.hourly?.precipitation_probability);
-  
+  WX=build(w,v);WX.upd=new Date();loadSpotWaves();
   render();
 }
 const GG=['dom','lun','mar','mer','gio','ven','sab'];
-const nf=(x,d=1)=>x.toFixed(d).replace('.',',');
-const card=d=>['N','NE','E','SE','S','SO','O','NO'][Math.round(d/45)%8];
 const arrow=d=>`<span class="arr" style="transform:rotate(${(d+180)%360}deg)" title="arriva da ${card(d)}">↑</span>`;
 const qual=(h,p)=>h>=0.8&&p>=6.5?['b','Buono']:h>=0.5&&p>=5?['d','Discreto']:['p','Piatto'];
 const day=i=>i===0?'oggi':i===1?'domani':GG[new Date(D.time[i]+'T12:00').getDay()];
@@ -185,40 +357,39 @@ document.getElementById('now').innerHTML=`<h2>Giorno migliore: ${day(best)}</h2>
 /* 7 giorni */
 const mx=Math.max(...D.hmax,1);
 document.getElementById('days').innerHTML=D.time.map((t,i)=>{const q=qual(D.hmax[i],D.per[i]);return `<div class="d"><div class="col"><div class="bar" style="height:${Math.max(4,D.hmax[i]/mx*100)}%"></div></div><b>${nf(D.hmax[i])} m</b><span class="dn">${day(i)}</span><span class="mini">${Math.round(D.per[i])} s</span><span class="mini">da ${card(D.dir[i])} ${arrow(D.dir[i])}</span><span class="mini rain" title="Probabilità di rovesci">☂ ${Math.round(D.rain[i])}%</span><span class="mini" title="Modelli: ${D.agree[i][1]}"><b class="ag ${D.agree[i][0]}">●</b></span><span class="q ${q[0]}" style="font-size:11px;padding:1px 4px;margin-top:4px">${q[1]}</span></div>`}).join('');
-/* grafico ora per ora */
-const s=document.getElementById('fig');
-let off=0;const DIRH=DIRS;
-const draw=()=>{const W=s.clientWidth,Hh=s.clientHeight,L=44,R=40,T=50,B=62,w=W-L-R,h=Hh-T-B,n=72,small=W<520;
-const lov=LO.slice(off,off+n),hiv=HI.slice(off,off+n),ymax=Math.max(1.5,Math.ceil(Math.max(...hiv)*2)/2),rv=RAIN.slice(off,off+n),hv=H.slice(off,off+n),pv=P.slice(off,off+n),dv=DIRH.slice(off,off+n);
-const x=i=>L+i/(n-1)*w,y=v=>T+h-v/ymax*h,yp=v=>T+h-v/10*h;
-const area=`M${L} ${T+h}`+hv.map((v,i)=>`L${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join('')+`L${x(n-1)} ${T+h}Z`;
-/* periodo solo quando l'onda è almeno 0,5 m: sotto è quasi piatto e il periodo non conta */
-let per='',pen=false;pv.forEach((v,i)=>{if(hv[i]<0.5){pen=false;return}per+=`${pen?'L':'M'}${x(i).toFixed(1)} ${yp(v).toFixed(1)}`;pen=true});
-let g='';Array.from({length:ymax*2+1},(_,j)=>j/2).forEach(v=>g+=`<line x1="${L}" x2="${L+w}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end">${nf(v)} m</text>`);
-[0,5,10].forEach(v=>g+=`<text x="${L+w+6}" y="${yp(v)+4}" style="fill:#e0680e">${v} s</text>`);
-g+=`<text x="${L-6}" y="${T+h+21}" text-anchor="end">☂</text>`;
-for(let i=0;i<n;i++){const k=off+i,hr=k%24,dd=Math.floor(k/24);
-  if(hr===0&&i>0)g+=`<line x1="${x(i)}" x2="${x(i)}" y1="${T}" y2="${T+h}" stroke="var(--line)" stroke-dasharray="3 4"/>`;
-  const lb=hr===0?(i===0?'0':'24'):(small?hr===12:[6,12,18].includes(hr))?String(hr):null;
-  g+=`<rect x="${(x(i)-w/(n-1)/2).toFixed(1)}" y="${T+h+10}" width="${(w/(n-1)+.5).toFixed(1)}" height="12" fill="#3b6fd6" opacity="${((rv[i]||0)/100*.85).toFixed(2)}"/>`;
-  if(lb!=null)g+=`<text x="${x(i)}" y="${T+h+38}" text-anchor="middle">${lb}</text>`;
-  if(hr===12)g+=`<text x="${x(i)}" y="${Hh-5}" text-anchor="middle" font-weight="700" style="fill:var(--ink)">${day(dd)}</text>`;
-  if(hr%(small?6:3)===0)g+=`<g transform="translate(${x(i)} 12) rotate(${(dv[i]+180)%360})"><path d="M0 -8L5 2H1.5V8H-1.5V2H-5Z" fill="var(--sea)"/></g><text x="${x(i)}" y="36" text-anchor="middle" font-weight="700" style="fill:var(--ink)">${card(dv[i])}</text>`;}
-s.innerHTML=`<svg viewBox="0 0 ${W} ${Hh}"><defs><linearGradient id="gw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#26b3c9"/><stop offset="1" stop-color="#0a6d86" stop-opacity=".35"/></linearGradient></defs>${g}<path d="M${hiv.map((v,i)=>x(i).toFixed(1)+' '+y(v).toFixed(1)).join('L')}L${lov.map((v,i)=>x(i).toFixed(1)+' '+y(v).toFixed(1)).reverse().join('L')}Z" fill="#26b3c9" opacity=".22"/><path d="${area}" fill="url(#gw)"/><path d="${per}" fill="none" stroke="#ff7a1a" stroke-width="2.5"/></svg>`};
-const win=document.getElementById('win');
-const go=v=>{off=Math.max(0,Math.min(96,v));win.value=off;draw()};
-win.addEventListener('input',()=>go(+win.value));
-document.querySelectorAll('.hr button').forEach(b=>b.addEventListener('click',()=>go(off+6*b.dataset.dv)));
-const ro=new ResizeObserver(draw);ro.observe(s);
+drawMare();
 WSEL=Math.min(WSEL,D.time.length-1);
 document.getElementById('wvdays').innerHTML=D.time.map((t,i)=>`<button data-i="${i}" aria-pressed="${i===WSEL}">${day(i)} · ${nf(D.hmax[i])} m</button>`).join('');
-new ResizeObserver(drawWave).observe(document.getElementById('wvscene'));
+drawWave();
 }
+
+/* ===== spot, mappa e tabella stile Windy ===== */
+const elS=document.getElementById('spots'),mapEl=document.getElementById('map'),tabEl=document.getElementById('tab');
+elS.innerHTML=Object.entries(SPOTS).map(([k,s])=>`<button data-k="${k}" aria-pressed="${k===SP}">${s.n}<small id="sw-${k}">– m</small></button>`).join('');
+/* onda di adesso in ogni spot, per i pulsanti in alto */
+async function loadSpotWaves(){const h=new Date().getHours();await Promise.all(Object.entries(SPOTS).map(async([k,s])=>{try{
+  const w=await fetch('https://marine-api.open-meteo.com/v1/marine?latitude='+s.lat+'&longitude='+s.lon+'&timezone=Europe%2FRome&forecast_days=1&hourly=wave_height&models='+MODS.join(',')).then(r=>r.json());
+  const v=med(MODS.map(m=>(w.hourly['wave_height_'+m]||[])[h]));document.getElementById('sw-'+k).innerHTML=v==null?'– m':nf(v)+' m<i>adesso</i>'}catch(e){}}))}
+function info(){const S=WX,sp=SPOTS[SP],i=SEL,k=windKind(S.wd[i],facing(sp));
+  document.getElementById('when').textContent=dayName(S.t[i]).replace(/^./,c=>c.toUpperCase())+', ore '+new Date(S.t[i]).getHours();
+  document.getElementById('minfo').innerHTML=(S.s1h[i]!=null?`<div class="s1"><b>${nf(S.s1h[i])} m · ${Math.round(S.s1p[i]||0)} s</b><span>Swell 1 da ${card(S.s1d[i])}</span></div>`:'')+(S.s2h[i]>=.05?`<div class="s2"><b>${nf(S.s2h[i])} m · ${Math.round(S.s2p[i]||0)} s</b><span>Swell 2 da ${card(S.s2d[i])}</span></div>`:`<div class="s2"><b>–</b><span>niente secondo swell</span></div>`)+`<div><b>${nf(S.h[i])} m</b><span>onda totale (4 modelli)</span></div><div><b>${S.ws[i]??'–'} km/h</b><span>vento da ${card(S.wd[i])}, ${k[1]}</span></div>`}
+function drawMare(){if(!WX)return;const sp=SPOTS[SP];
+  const now=Date.now(),ST=Math.max(0,WX.t.findIndex(t=>new Date(t).getTime()>now-3600000)); /* da adesso in poi: le ore passate non si mostrano */
+  if(SEL==null||SEL<ST)SEL=ST;
+  SEL=Math.min(SEL,WX.t.length-1);
+  const ttl='Onde a '+sp.n+(sp.n===sp.c?'':', '+sp.c);document.getElementById('ttl').textContent=ttl;document.title=ttl;
+  const sl=tabEl.scrollLeft;drawMap(mapEl,sp,WX,SEL);drawTable(tabEl,WX,SEL,STEP,facing(sp),ST);info();
+  if(FIRST){tabEl.scrollLeft=0;FIRST=false}else tabEl.scrollLeft=sl;
+  document.getElementById('upd').textContent='Aggiornato alle '+WX.upd.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'})+'; si aggiorna da solo ogni 10 minuti.'}
+elS.addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.dataset.k===SP)return;SP=b.dataset.k;SEL=null;FIRST=true;elS.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));load().catch(()=>{})});
+tabEl.addEventListener('click',e=>{const c=e.target.closest('td[data-i]');if(!c)return;SEL=+c.dataset.i;drawMare()});
+const roMap=new ResizeObserver(()=>{if(WX)drawMap(mapEl,SPOTS[SP],WX,SEL)});roMap.observe(mapEl);
+const roWave=new ResizeObserver(drawWave);roWave.observe(document.getElementById('wvscene'));
 document.getElementById('wvdays').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;WSEL=+b.dataset.i;document.querySelectorAll('#wvdays button').forEach(x=>x.setAttribute('aria-pressed',x===b));drawWave()});
 load().catch(()=>{document.getElementById('now').innerHTML='<h2>Dati non disponibili</h2><p class="sub">Open-Meteo non risponde in questo momento. Riprova tra qualche minuto.</p>'});
-setInterval(()=>load().catch(()=>{}),3600000);
+setInterval(()=>load().catch(()=>{}),600000);
 /* Webcam: prova la foto dal vivo, ricaricata ogni 30 minuti; se non si carica resta la foto salvata */
-const ci=document.getElementById('camimg'),saved=ci.src;
+const ci=document.getElementById('camimg'),saved=ci.src;ci.onerror=()=>{ci.style.visibility='hidden'};
 const camLoad=()=>{const t=new Image(),k=Math.floor(Date.now()/1800000);t.onload=()=>{ci.src=t.src;document.getElementById('camt').textContent='Foto delle '+new Date().toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'})+'.'};t.src=ci.dataset.live+'?v='+k};
 camLoad();setInterval(camLoad,1800000);
 }
